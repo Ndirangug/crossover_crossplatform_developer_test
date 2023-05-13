@@ -39,24 +39,28 @@ class ActionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          margin: EdgeInsets.only(bottom: 5),
-          child: SvgPicture.asset(
-            "assets/icons/$icon.svg",
-            width: 30,
-            colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            margin: EdgeInsets.only(bottom: 5),
+            child: SvgPicture.asset(
+              "assets/icons/$icon.svg",
+              width: 30,
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+            ),
           ),
-        ),
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 12),
-        )
-      ],
+          Text(
+            label,
+            style:
+                Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 12),
+          )
+        ],
+      ),
     );
   }
 }

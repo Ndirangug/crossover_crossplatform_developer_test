@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
                 child: Container(
-              child: const Swippable(),
+              child: Swippable(),
             ))
           ],
         ),

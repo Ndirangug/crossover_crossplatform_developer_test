@@ -1,3 +1,4 @@
+import 'package:crossover_test/controllers/feed_actions_controller.dart';
 import 'package:crossover_test/pallette.dart' as palette;
 import 'package:crossover_test/router.dart';
 import 'package:crossover_test/widgets/bottom_navbar/bottom_navbar.dart';
@@ -25,6 +26,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() async {
         //Get.put(await SharedPreferences.getInstance(), permanent: true);
+        Get.put(FeedActionsController(), permanent: true);
         Get.put(Logger(), permanent: true);
       }),
       initialRoute: "/",
@@ -42,8 +44,8 @@ class _MyAppState extends State<MyApp> {
             primaryGradientColor1: const Color.fromRGBO(0, 29, 40, 1),
             primaryGradientColor2: const Color.fromRGBO(0, 66, 90, 1),
             accent: const Color.fromRGBO(40, 177, 143, 1),
-            error: const Color.fromRGBO(1, 30, 41, 1),
-            tertiary1: const Color.fromRGBO(220, 95, 95, 1),
+            error: const Color.fromRGBO(220, 95, 95, 1),
+            tertiary1: const Color.fromRGBO(241, 125, 35, 1),
             tertiary2: const Color.fromRGBO(251, 182, 104, 1),
             tertiary3: const Color.fromRGBO(255, 212, 73, 1),
             tertiary4: const Color.fromRGBO(22, 98, 79, 1),
@@ -63,8 +65,8 @@ class _MyAppState extends State<MyApp> {
             primaryGradientColor1: const Color.fromRGBO(0, 29, 40, 1),
             primaryGradientColor2: const Color.fromRGBO(0, 66, 90, 1),
             accent: const Color.fromRGBO(40, 177, 143, 1),
-            error: const Color.fromRGBO(1, 30, 41, 1),
-            tertiary1: const Color.fromRGBO(220, 95, 95, 1),
+            error: const Color.fromRGBO(220, 95, 95, 1),
+            tertiary1: const Color.fromRGBO(241, 125, 35, 1),
             tertiary2: const Color.fromRGBO(251, 182, 104, 1),
             tertiary3: const Color.fromRGBO(255, 212, 73, 1),
             tertiary4: const Color.fromRGBO(22, 98, 79, 1),
