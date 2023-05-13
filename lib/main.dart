@@ -28,16 +28,42 @@ class _MyAppState extends State<MyApp> {
       }),
       initialRoute: "/",
       getPages: [GetPage(name: "/", page: () => const _Scaffold())],
-      theme: ThemeData(
-        primaryColor: palette.maastrichBlue,
-        highlightColor: palette.white,
-        buttonTheme: Theme.of(context)
-            .buttonTheme
-            .copyWith(buttonColor: palette.maastrichBlue),
-        fontFamily: 'SFProRounded',
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(fontSize: 12.0, fontFamily: 'SFProRounded'),
-        ),
+      themeMode: ThemeMode.dark,
+      theme: ThemeData.light().copyWith(
+        extensions: <ThemeExtension<dynamic>>[
+          palette.Pallette(
+            normalText: Colors.white,
+            disabledText: Colors.white.withOpacity(0.4),
+            primary: const Color.fromRGBO(1, 30, 41, 1),
+            primaryGradientColor1: const Color.fromRGBO(0, 29, 40, 1),
+            primaryGradientColor2: const Color.fromRGBO(0, 66, 90, 1),
+            accent: const Color.fromRGBO(40, 177, 143, 1),
+            error: const Color.fromRGBO(1, 30, 41, 1),
+            tertiary1: const Color.fromRGBO(220, 95, 95, 1),
+            tertiary2: const Color.fromRGBO(251, 182, 104, 1),
+            tertiary3: const Color.fromRGBO(255, 212, 73, 1),
+            tertiary4: const Color.fromRGBO(22, 98, 79, 1),
+            tertiary5: const Color.fromRGBO(31, 138, 112, 1),
+          )
+        ],
+      ),
+      darkTheme: ThemeData.dark().copyWith(
+        extensions: <ThemeExtension<dynamic>>[
+          palette.Pallette(
+            normalText: Colors.white,
+            disabledText: Colors.white.withOpacity(0.4),
+            primary: const Color.fromRGBO(1, 30, 41, 1),
+            primaryGradientColor1: const Color.fromRGBO(0, 29, 40, 1),
+            primaryGradientColor2: const Color.fromRGBO(0, 66, 90, 1),
+            accent: const Color.fromRGBO(40, 177, 143, 1),
+            error: const Color.fromRGBO(1, 30, 41, 1),
+            tertiary1: const Color.fromRGBO(220, 95, 95, 1),
+            tertiary2: const Color.fromRGBO(251, 182, 104, 1),
+            tertiary3: const Color.fromRGBO(255, 212, 73, 1),
+            tertiary4: const Color.fromRGBO(22, 98, 79, 1),
+            tertiary5: const Color.fromRGBO(31, 138, 112, 1),
+          ),
+        ],
       ),
     );
   }

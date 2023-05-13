@@ -1,4 +1,4 @@
-import 'package:crossover_test/pallette.dart' as palette;
+import 'package:crossover_test/pallette.dart';
 import 'package:crossover_test/router.dart';
 import 'package:crossover_test/widgets/bottom_navbar_item.dart';
 import 'package:flutter/material.dart';
@@ -21,17 +21,18 @@ class _BottomNavbarState extends State<BottomNavbar> {
       iconSize: 10,
       type: BottomNavigationBarType.fixed,
       currentIndex: _currentIndex,
-      backgroundColor: palette.maastrichBlue,
+      backgroundColor: Theme.of(context).extension<Pallette>()!.primary,
       selectedLabelStyle: Theme.of(context)
           .textTheme
-          .bodyLarge!
-          .copyWith(color: palette.white, fontWeight: FontWeight.w500),
+          .bodyMedium!
+          .copyWith(fontWeight: FontWeight.w500),
       unselectedLabelStyle: Theme.of(context)
           .textTheme
-          .bodyLarge!
-          .copyWith(color: palette.fadedWhite, fontWeight: FontWeight.w500),
-      unselectedItemColor: palette.fadedWhite,
-      selectedItemColor: palette.white,
+          .bodyMedium!
+          .copyWith(fontWeight: FontWeight.w500),
+      unselectedItemColor:
+          Theme.of(context).extension<Pallette>()!.disabledText,
+      selectedItemColor: Theme.of(context).extension<Pallette>()!.normalText,
       items: [
         buildBottomNavbarItem(
             label: "Home", icon: "home", active: _currentIndex == 0),
