@@ -35,15 +35,30 @@ class _BottomNavbarState extends State<BottomNavbar> {
       selectedItemColor: Theme.of(context).extension<Pallette>()!.normalText,
       items: [
         buildBottomNavbarItem(
-            label: "Home", icon: "home", active: _currentIndex == 0),
+            context: context,
+            label: "Home",
+            icon: "home",
+            active: _currentIndex == 0),
         buildBottomNavbarItem(
-            label: "Discover", icon: "discover", active: _currentIndex == 1),
+            context: context,
+            label: "Discover",
+            icon: "discover",
+            active: _currentIndex == 1),
         buildBottomNavbarItem(
-            label: "Activity", icon: "activity", active: _currentIndex == 2),
+            context: context,
+            label: "Activity",
+            icon: "activity",
+            active: _currentIndex == 2),
         buildBottomNavbarItem(
-            label: "Bookmarks", icon: "bookmarks", active: _currentIndex == 3),
+            context: context,
+            label: "Bookmarks",
+            icon: "bookmarks",
+            active: _currentIndex == 3),
         buildBottomNavbarItem(
-            label: "Profile", icon: "profile", active: _currentIndex == 4),
+            context: context,
+            label: "Profile",
+            icon: "profile",
+            active: _currentIndex == 4),
       ],
       onTap: (index) {
         if (index == _currentIndex) return;

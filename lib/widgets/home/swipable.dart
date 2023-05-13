@@ -1,5 +1,7 @@
 import 'package:crossover_test/widgets/home/content_info.dart';
+import 'package:crossover_test/widgets/home/feed_actions.dart';
 import 'package:crossover_test/widgets/home/playlist_view.dart';
+import 'package:crossover_test/widgets/home/user_avatar.dart';
 import 'package:flutter/material.dart';
 
 class Swippable extends StatelessWidget {
@@ -56,10 +58,9 @@ class Swippable extends StatelessWidget {
                                             margin: EdgeInsets.only(
                                                 top: constraints.maxHeight *
                                                     0.04),
-                                            
                                             height: constraints.maxHeight * 0.1,
                                             width: constraints.maxWidth,
-                                            child: ContentInfo(),
+                                            child: const ContentInfo(),
                                           ),
                                         )
                                       ],
@@ -68,10 +69,46 @@ class Swippable extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                width: constraints.maxWidth * 0.13,
-                                height: constraints.maxHeight,
-                                color: Colors.white.withOpacity(0.5),
-                              )
+                                  width: constraints.maxWidth * 0.13,
+                                  height: constraints.maxHeight,
+                                  color: Colors.white.withOpacity(0.5),
+                                  alignment: Alignment.bottomCenter,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          margin:
+                                              const EdgeInsets.only(bottom: 15),
+                                          child: const UserAvatar(width: 45)),
+                                      FeedActions(
+                                        spacing: 12,
+                                        items: [
+                                          ActionItem(
+                                              icon: "like",
+                                              label: "23",
+                                              onTap: () {}),
+                                          ActionItem(
+                                              icon: "comment",
+                                              label: "23",
+                                              onTap: () {}),
+                                          ActionItem(
+                                              icon: "share",
+                                              label: "23",
+                                              onTap: () {}),
+                                          ActionItem(
+                                              icon: "bookmarks",
+                                              label: "23",
+                                              onTap: () {}),
+                                          ActionItem(
+                                              icon: "flip",
+                                              label: "Flip",
+                                              onTap: () {})
+                                        ],
+                                      )
+                                    ],
+                                  ))
                             ],
                           )),
                     ),
