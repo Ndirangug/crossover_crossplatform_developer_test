@@ -78,10 +78,10 @@ class Swippable extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                      margin: const EdgeInsets.only(bottom: 15),
+                                      margin: const EdgeInsets.only(bottom: 8),
                                       child: const UserAvatar(width: 45)),
                                   Obx(() => FeedActions(
-                                        spacing: 12,
+                                        spacing: 18,
                                         items: [
                                           ActionItem(
                                               icon: "like",

@@ -12,7 +12,7 @@ class ContentInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 5),
+              margin: const EdgeInsets.only(bottom: 5),
               child: Text(
                 "AP US History",
                 style: Theme.of(context)
