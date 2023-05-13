@@ -1,6 +1,6 @@
 import 'package:crossover_test/pallette.dart';
 import 'package:crossover_test/router.dart';
-import 'package:crossover_test/widgets/bottom_navbar_item.dart';
+import 'package:crossover_test/widgets/bottom_navbar/bottom_navbar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

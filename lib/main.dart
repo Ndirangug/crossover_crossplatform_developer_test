@@ -1,6 +1,6 @@
 import 'package:crossover_test/pallette.dart' as palette;
 import 'package:crossover_test/router.dart';
-import 'package:crossover_test/widgets/bottom_navbar.dart';
+import 'package:crossover_test/widgets/bottom_navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       }),
       initialRoute: "/",
       getPages: [GetPage(name: "/", page: () => const _Scaffold())],
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       theme: ThemeData.light().copyWith(
         extensions: <ThemeExtension<dynamic>>[
           palette.Pallette(

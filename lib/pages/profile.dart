@@ -1,3 +1,4 @@
+import 'package:crossover_test/pallette.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -5,9 +6,21 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Profile",
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).extension<Pallette>()!.primaryGradientColor1,
+            Theme.of(context).extension<Pallette>()!.primaryGradientColor2
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: const Center(
+        child: Text(
+          "Profile",
+        ),
       ),
     );
   }
