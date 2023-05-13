@@ -1,5 +1,6 @@
 import 'package:crossover_test/pallette.dart';
 import 'package:crossover_test/widgets/home/home_top_bar.dart';
+import 'package:crossover_test/widgets/home/swipable.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,7 +34,10 @@ class HomePage extends StatelessWidget {
                 child: const HomeTopBar(),
               ),
             ),
-            Expanded(child: Container())
+            Expanded(
+                child: Container(
+              child: const Swippable(),
+            ))
           ],
         ),
       ),

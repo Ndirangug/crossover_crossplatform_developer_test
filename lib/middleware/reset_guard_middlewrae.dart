@@ -8,7 +8,7 @@ class ResetGuardMiddleWare extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     if (route == '/reset') {
-      return RouteSettings(name: '/login');
+      return const RouteSettings(name: '/login');
     }
     return null;
   }

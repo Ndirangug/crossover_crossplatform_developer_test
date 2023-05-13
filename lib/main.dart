@@ -21,6 +21,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() async {
         //Get.put(await SharedPreferences.getInstance(), permanent: true);
@@ -28,8 +29,11 @@ class _MyAppState extends State<MyApp> {
       }),
       initialRoute: "/",
       getPages: [GetPage(name: "/", page: () => const _Scaffold())],
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       theme: ThemeData.light().copyWith(
+        textTheme: Typography.englishLike2021.copyWith(
+            bodyMedium: theme.textTheme.bodyMedium!
+                .copyWith(color: Colors.black, fontFamily: 'SFProRounded')),
         extensions: <ThemeExtension<dynamic>>[
           palette.Pallette(
             normalText: Colors.white,
@@ -48,6 +52,9 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
+        textTheme: Typography.englishLike2021.copyWith(
+            bodyMedium: theme.textTheme.bodyMedium!
+                .copyWith(color: Colors.white, fontFamily: 'SFProRounded')),
         extensions: <ThemeExtension<dynamic>>[
           palette.Pallette(
             normalText: Colors.white,
