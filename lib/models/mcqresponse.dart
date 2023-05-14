@@ -8,7 +8,8 @@ part 'mcqresponse.g.dart';
 class McqResponse with _$McqResponse {
   factory McqResponse(
       {required String id,
-      required List<McqOption> correctOptions}) = _McqResponse;
+      @JsonKey(name: 'correct_options')
+          required List<McqOption> correctOptions}) = _McqResponse;
 
   factory McqResponse.fromJson(Map<String, dynamic> json) =>
       _$McqResponseFromJson(json);

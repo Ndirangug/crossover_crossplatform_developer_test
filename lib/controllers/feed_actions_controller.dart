@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FeedActionsController extends GetxController {
@@ -6,6 +7,7 @@ class FeedActionsController extends GetxController {
 
   final _isLiked = false.obs;
   final _isBookmarked = false.obs;
+  late final TabController tabController;
 
   void toggleLike() {
     _isLiked.value = !_isLiked.value;

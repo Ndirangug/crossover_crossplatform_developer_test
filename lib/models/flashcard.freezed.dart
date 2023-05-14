@@ -22,7 +22,9 @@ FlashCard _$FlashCardFromJson(Map<String, dynamic> json) {
 mixin _$FlashCard {
   int get id => throw _privateConstructorUsedError;
   String get playlist => throw _privateConstructorUsedError;
+  @JsonKey(name: 'flashcard_front')
   String get flashbackFront => throw _privateConstructorUsedError;
+  @JsonKey(name: 'flashcard_back')
   String get flashbackBack => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
@@ -41,8 +43,8 @@ abstract class $FlashCardCopyWith<$Res> {
   $Res call(
       {int id,
       String playlist,
-      String flashbackFront,
-      String flashbackBack,
+      @JsonKey(name: 'flashcard_front') String flashbackFront,
+      @JsonKey(name: 'flashcard_back') String flashbackBack,
       String description,
       User user});
 
@@ -116,8 +118,8 @@ abstract class _$$_FlashCardCopyWith<$Res> implements $FlashCardCopyWith<$Res> {
   $Res call(
       {int id,
       String playlist,
-      String flashbackFront,
-      String flashbackBack,
+      @JsonKey(name: 'flashcard_front') String flashbackFront,
+      @JsonKey(name: 'flashcard_back') String flashbackBack,
       String description,
       User user});
 
@@ -178,8 +180,8 @@ class _$_FlashCard implements _FlashCard {
   _$_FlashCard(
       {required this.id,
       required this.playlist,
-      required this.flashbackFront,
-      required this.flashbackBack,
+      @JsonKey(name: 'flashcard_front') required this.flashbackFront,
+      @JsonKey(name: 'flashcard_back') required this.flashbackBack,
       required this.description,
       required this.user});
 
@@ -191,8 +193,10 @@ class _$_FlashCard implements _FlashCard {
   @override
   final String playlist;
   @override
+  @JsonKey(name: 'flashcard_front')
   final String flashbackFront;
   @override
+  @JsonKey(name: 'flashcard_back')
   final String flashbackBack;
   @override
   final String description;
@@ -244,8 +248,8 @@ abstract class _FlashCard implements FlashCard {
   factory _FlashCard(
       {required final int id,
       required final String playlist,
-      required final String flashbackFront,
-      required final String flashbackBack,
+      @JsonKey(name: 'flashcard_front') required final String flashbackFront,
+      @JsonKey(name: 'flashcard_back') required final String flashbackBack,
       required final String description,
       required final User user}) = _$_FlashCard;
 
@@ -257,8 +261,10 @@ abstract class _FlashCard implements FlashCard {
   @override
   String get playlist;
   @override
+  @JsonKey(name: 'flashcard_front')
   String get flashbackFront;
   @override
+  @JsonKey(name: 'flashcard_back')
   String get flashbackBack;
   @override
   String get description;

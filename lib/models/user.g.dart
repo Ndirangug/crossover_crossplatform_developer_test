@@ -7,11 +7,11 @@ part of 'user.dart';
 // **************************************************************************
 
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
-      user: json['user'] as String,
+      name: json['name'] as String,
       avatar: json['avatar'] as String,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
-      'user': instance.user,
+      'name': instance.name,
       'avatar': instance.avatar,
     };

@@ -1,4 +1,7 @@
+import 'package:crossover_test/api.dart';
 import 'package:crossover_test/controllers/feed_actions_controller.dart';
+import 'package:crossover_test/controllers/following_controller.dart';
+import 'package:crossover_test/controllers/for_you_controller.dart';
 import 'package:crossover_test/pallette.dart' as palette;
 import 'package:crossover_test/router.dart';
 import 'package:crossover_test/widgets/bottom_navbar/bottom_navbar.dart';
@@ -26,13 +29,17 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() async {
         //Get.put(await SharedPreferences.getInstance(), permanent: true);
+        Get.put(Api(), permanent: true);
         Get.put(FeedActionsController(), permanent: true);
+        Get.put(FollowingController(), permanent: true);
+        Get.put(ForYouController(), permanent: true);
         Get.put(Logger(), permanent: true);
       }),
       initialRoute: "/",
       getPages: [GetPage(name: "/", page: () => const _Scaffold())],
       themeMode: ThemeMode.dark,
       theme: ThemeData.light().copyWith(
+        primaryColor: const Color.fromRGBO(1, 30, 41, 1),
         textTheme: Typography.englishLike2021.copyWith(
             bodyMedium: theme.textTheme.bodyMedium!
                 .copyWith(color: Colors.black, fontFamily: 'SFProRounded')),
@@ -54,6 +61,7 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
       darkTheme: ThemeData.dark().copyWith(
+        primaryColor: const Color.fromRGBO(1, 30, 41, 1),
         textTheme: Typography.englishLike2021.copyWith(
             bodyMedium: theme.textTheme.bodyMedium!
                 .copyWith(color: Colors.white, fontFamily: 'SFProRounded')),

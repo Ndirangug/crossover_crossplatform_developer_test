@@ -1,5 +1,7 @@
+import 'package:crossover_test/controllers/feed_actions_controller.dart';
 import 'package:crossover_test/pallette.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeTabbar extends StatefulWidget {
   const HomeTabbar({super.key});
@@ -45,6 +47,8 @@ class _HomeTabbarState extends State<HomeTabbar>
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: 2);
+   
+    Get.find<FeedActionsController>().tabController = _tabController;
   }
 
   @override

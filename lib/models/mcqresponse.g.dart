@@ -9,7 +9,7 @@ part of 'mcqresponse.dart';
 _$_McqResponse _$$_McqResponseFromJson(Map<String, dynamic> json) =>
     _$_McqResponse(
       id: json['id'] as String,
-      correctOptions: (json['correctOptions'] as List<dynamic>)
+      correctOptions: (json['correct_options'] as List<dynamic>)
           .map((e) => McqOption.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -17,5 +17,5 @@ _$_McqResponse _$$_McqResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_McqResponseToJson(_$_McqResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'correctOptions': instance.correctOptions,
+      'correct_options': instance.correctOptions,
     };

@@ -20,7 +20,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  String get user => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String user, String avatar});
+  $Res call({String name, String avatar});
 }
 
 /// @nodoc
@@ -49,13 +49,13 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? name = null,
     Object? avatar = null,
   }) {
     return _then(_value.copyWith(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       avatar: null == avatar
           ? _value.avatar
@@ -71,7 +71,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$_UserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String user, String avatar});
+  $Res call({String name, String avatar});
 }
 
 /// @nodoc
@@ -83,13 +83,13 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? name = null,
     Object? avatar = null,
   }) {
     return _then(_$_User(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       avatar: null == avatar
           ? _value.avatar
@@ -102,18 +102,18 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 /// @nodoc
 @JsonSerializable()
 class _$_User implements _User {
-  _$_User({required this.user, required this.avatar});
+  _$_User({required this.name, required this.avatar});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
-  final String user;
+  final String name;
   @override
   final String avatar;
 
   @override
   String toString() {
-    return 'User(user: $user, avatar: $avatar)';
+    return 'User(name: $name, avatar: $avatar)';
   }
 
   @override
@@ -121,13 +121,13 @@ class _$_User implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_User &&
-            (identical(other.user, user) || other.user == user) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user, avatar);
+  int get hashCode => Object.hash(runtimeType, name, avatar);
 
   @JsonKey(ignore: true)
   @override
@@ -144,13 +144,13 @@ class _$_User implements _User {
 }
 
 abstract class _User implements User {
-  factory _User({required final String user, required final String avatar}) =
+  factory _User({required final String name, required final String avatar}) =
       _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  String get user;
+  String get name;
   @override
   String get avatar;
   @override

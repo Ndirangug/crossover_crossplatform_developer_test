@@ -9,8 +9,8 @@ class FlashCard with _$FlashCard {
   factory FlashCard({
     required int id,
     required String playlist,
-    required String flashbackFront,
-    required String flashbackBack,
+    @JsonKey(name: 'flashcard_front') required String flashbackFront,
+    @JsonKey(name: 'flashcard_back') required String flashbackBack,
     required String description,
     required User user,
   }) = _FlashCard;

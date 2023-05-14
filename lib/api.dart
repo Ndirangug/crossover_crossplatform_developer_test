@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:crossover_test/models/flashcard.dart';
 import 'package:crossover_test/models/mcq.dart';
 import 'package:crossover_test/models/mcqresponse.dart';
@@ -20,16 +18,16 @@ class Api {
 
   Future<FlashCard> fetchNextFollowing() async {
     var response = await dio.get('/following');
-    return FlashCard.fromJson(jsonDecode(response.toString()));
+    return FlashCard.fromJson(response.data);
   }
 
   Future<MCQ> fetchNextForYou() async {
     var response = await dio.get('/for_you');
-    return MCQ.fromJson(jsonDecode(response.toString()));
+    return MCQ.fromJson(response.data);
   }
 
   Future<McqResponse> fetchMcqAnswer(int id) async {
     var response = await dio.get('/reveal', queryParameters: {"id": id});
-    return McqResponse.fromJson(jsonDecode(response.toString()));
+    return McqResponse.fromJson(response.data);
   }
 }

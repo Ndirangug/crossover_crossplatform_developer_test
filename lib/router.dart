@@ -21,7 +21,7 @@ enum Routes {
   Widget get widget {
     switch (this) {
       case Routes.home:
-        return const HomePage();
+        return HomePage();
       case Routes.discover:
         return const DiscoverPage();
       case Routes.activity:

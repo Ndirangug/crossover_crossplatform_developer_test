@@ -21,6 +21,7 @@ McqResponse _$McqResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$McqResponse {
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'correct_options')
   List<McqOption> get correctOptions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,9 @@ abstract class $McqResponseCopyWith<$Res> {
           McqResponse value, $Res Function(McqResponse) then) =
       _$McqResponseCopyWithImpl<$Res, McqResponse>;
   @useResult
-  $Res call({String id, List<McqOption> correctOptions});
+  $Res call(
+      {String id,
+      @JsonKey(name: 'correct_options') List<McqOption> correctOptions});
 }
 
 /// @nodoc
@@ -75,7 +78,9 @@ abstract class _$$_McqResponseCopyWith<$Res>
       __$$_McqResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, List<McqOption> correctOptions});
+  $Res call(
+      {String id,
+      @JsonKey(name: 'correct_options') List<McqOption> correctOptions});
 }
 
 /// @nodoc
@@ -109,7 +114,9 @@ class __$$_McqResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_McqResponse implements _McqResponse {
   _$_McqResponse(
-      {required this.id, required final List<McqOption> correctOptions})
+      {required this.id,
+      @JsonKey(name: 'correct_options')
+          required final List<McqOption> correctOptions})
       : _correctOptions = correctOptions;
 
   factory _$_McqResponse.fromJson(Map<String, dynamic> json) =>
@@ -119,6 +126,7 @@ class _$_McqResponse implements _McqResponse {
   final String id;
   final List<McqOption> _correctOptions;
   @override
+  @JsonKey(name: 'correct_options')
   List<McqOption> get correctOptions {
     if (_correctOptions is EqualUnmodifiableListView) return _correctOptions;
     // ignore: implicit_dynamic_type
@@ -162,7 +170,8 @@ class _$_McqResponse implements _McqResponse {
 abstract class _McqResponse implements McqResponse {
   factory _McqResponse(
       {required final String id,
-      required final List<McqOption> correctOptions}) = _$_McqResponse;
+      @JsonKey(name: 'correct_options')
+          required final List<McqOption> correctOptions}) = _$_McqResponse;
 
   factory _McqResponse.fromJson(Map<String, dynamic> json) =
       _$_McqResponse.fromJson;
@@ -170,6 +179,7 @@ abstract class _McqResponse implements McqResponse {
   @override
   String get id;
   @override
+  @JsonKey(name: 'correct_options')
   List<McqOption> get correctOptions;
   @override
   @JsonKey(ignore: true)
