@@ -1,4 +1,6 @@
 import 'package:crossover_test/controllers/feed_actions_controller.dart';
+import 'package:crossover_test/models/flashcard.dart';
+import 'package:crossover_test/models/mcq.dart';
 import 'package:crossover_test/pallette.dart';
 import 'package:crossover_test/widgets/home/content_info.dart';
 import 'package:crossover_test/widgets/home/feed_actions.dart';
@@ -8,8 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Swippable extends StatelessWidget {
-  Swippable({super.key});
+  final FlashCard? flashCard;
+  final MCQ? mcq;
+  Swippable({super.key, this.flashCard, this.mcq});
   final FeedActionsController _feedActionsController = Get.find();
+
+  bool get isFlashCard => flashCard != null;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +66,14 @@ class Swippable extends StatelessWidget {
                                             top: constraints.maxHeight * 0.04),
                                         height: constraints.maxHeight * 0.1,
                                         width: constraints.maxWidth,
-                                        child: const ContentInfo(),
+                                        child: ContentInfo(
+                                          user: isFlashCard
+                                              ? flashCard!.user.name
+                                              : mcq!.user.name,
+                                          description: isFlashCard
+                                              ? flashCard!.description
+                                              : mcq!.description,
+                                        ),
                                       ),
                                     )
                                   ],
@@ -79,7 +92,12 @@ class Swippable extends StatelessWidget {
                                 children: [
                                   Container(
                                       margin: const EdgeInsets.only(bottom: 8),
-                                      child: const UserAvatar(width: 45)),
+                                      child: UserAvatar(
+                                        width: 45,
+                                        avatarUrl: isFlashCard
+                                            ? flashCard!.user.avatar
+                                            : mcq!.user.avatar,
+                                      )),
                                   Obx(() => FeedActions(
                                         spacing: 18,
                                         items: [
@@ -135,7 +153,10 @@ class Swippable extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: SizedBox(
                         height: constraints.maxHeight * 0.05,
-                        child: const PlaylistView()),
+                        child: PlaylistView(
+                          playlistName:
+                              isFlashCard ? flashCard!.playlist : mcq!.playlist,
+                        )),
                   ),
                 ],
               ),

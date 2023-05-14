@@ -35,4 +35,5 @@ class FollowingController extends GetxController {
 
   PageController get followingPageController => _followingPageController;
   List<FlashCard> get flashCards => _flashCards.map((e) => e).toList();
+  
 }

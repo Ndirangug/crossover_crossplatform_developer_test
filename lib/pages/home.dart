@@ -8,14 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   final FollowingController _followingController = Get.find();
   final ForYouController _forYouController = Get.find();
   final Logger _logger = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -51,19 +59,22 @@ class HomePage extends StatelessWidget {
                     controller: Get.find<FeedActionsController>().tabController,
                     children: [
                       Obx(() => PageView(
+                          restorationId: "1",
                           scrollDirection: Axis.vertical,
                           controller:
                               _followingController.followingPageController,
-                          children: _followingController.flashCards.map((e) {
-                            _logger.i(e);
-                            return Swippable();
+                          children:
+                              _followingController.flashCards.map((flashCard) {
+                            // _logger.i(flashCard);
+                            return Swippable(flashCard: flashCard);
                           }).toList())),
                       Obx(() => PageView(
+                          restorationId: "2",
                           scrollDirection: Axis.vertical,
                           controller: _forYouController.forYouPageController,
-                          children: _forYouController.mcqs.map((e) {
-                            _logger.i(e);
-                            return Swippable();
+                          children: _forYouController.mcqs.map((mcq) {
+                            //_logger.i(mcq);
+                            return Swippable(mcq: mcq);
                           }).toList()))
                     ]),
               ),
@@ -73,4 +84,7 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -33,4 +33,5 @@ class ForYouController extends GetxController {
 
   PageController get forYouPageController => _forYouPageController;
   List<MCQ> get mcqs => _mcqs.map((e) => e).toList();
+  
 }

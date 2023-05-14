@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ContentInfo extends StatelessWidget {
-  const ContentInfo({super.key});
+  final String user;
+  final String description;
+  const ContentInfo({super.key, required this.user, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class ContentInfo extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(bottom: 5),
               child: Text(
-                "AP US History",
+                user,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
@@ -22,7 +24,8 @@ class ContentInfo extends StatelessWidget {
               ),
             ),
             Text(
-              "Topic 5.2: Manifest Destiny #apush5_1",
+              description,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!

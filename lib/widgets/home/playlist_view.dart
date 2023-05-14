@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PlaylistView extends StatelessWidget {
-  const PlaylistView({super.key});
+  final String playlistName;
+  const PlaylistView({super.key, required this.playlistName});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class PlaylistView extends StatelessWidget {
           Container(
               margin: const EdgeInsets.only(left: 5, right: 5),
               alignment: Alignment.center,
-              child: Text('Playlist - Unit 5: Period 5: 1844-1877',
+              child: Text(playlistName,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color:
                           Theme.of(context).extension<Pallette>()!.normalText,
