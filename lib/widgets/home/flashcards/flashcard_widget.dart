@@ -12,13 +12,32 @@ class FlashCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Obx(
-          () => _followingController.flashcardsState[flashCard.id]!.isFlipped
-              ? const FlashcardBack()
-              : FlashcardFront(
-                  question: flashCard.flashbackFront,
-                )),
-    );
+    return LayoutBuilder(
+        builder: ((context, constraints) => Container(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              child: Obx(() => AnimatedCrossFade(
+                  firstChild: Container(
+                    height: constraints.maxHeight,
+                    width: constraints.maxWidth,
+                    child: FlashcardFront(
+                      question: flashCard.flashbackFront,
+                    ),
+                  ),
+                  secondChild: Container(
+                    height: constraints.maxHeight,
+                    width: constraints.maxWidth,
+                    child: FlashcardBack(
+                      id: flashCard.id,
+                      question: flashCard.flashbackFront,
+                      answer: flashCard.flashbackBack,
+                    ),
+                  ),
+                  crossFadeState: _followingController
+                          .flashcardsState[flashCard.id]!.isFlipped
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                  duration: const Duration(milliseconds: 500))),
+            )));
   }
 }

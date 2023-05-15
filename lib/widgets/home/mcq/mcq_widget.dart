@@ -7,6 +7,11 @@ class MCQWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return LayoutBuilder(
+        builder: (context, constraints) => Container(
+              height: constraints.maxHeight,
+              width: constraints.maxWidth,
+              child: Placeholder(),
+            ));
   }
 }

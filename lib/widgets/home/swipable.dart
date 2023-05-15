@@ -60,13 +60,20 @@ class Swippable extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Container(
-                                        color: Colors.black.withOpacity(0.3),
+                                       // color: Colors.black.withOpacity(0.3),
                                         height: 45,
                                         width: constraints.maxWidth,
-                                        child: isFlashCard
-                                            ? FlashCardWidget(
-                                                flashCard: flashCard!)
-                                            : MCQWidget(mcq: mcq!),
+                                       
+                                        child: LayoutBuilder(
+                                            builder: (context, constraints) =>
+                                                Container(
+                                                  height: constraints.maxHeight,
+                                                  width: constraints.maxWidth,
+                                                  child: isFlashCard
+                                                      ? FlashCardWidget(
+                                                          flashCard: flashCard!)
+                                                      : MCQWidget(mcq: mcq!),
+                                                )),
                                       ),
                                     ),
                                     Align(

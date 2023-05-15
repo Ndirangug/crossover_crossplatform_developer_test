@@ -7,14 +7,20 @@ class FlashcardFront extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        this.question,
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: Theme.of(context).extension<Pallette>()!.normalText,
-              fontSize: 21,
-            ),
-      ),
-    );
+    return LayoutBuilder(
+        builder: (context, constraints) => Container(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              child: Center(
+                child: Text(
+                  question,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color:
+                            Theme.of(context).extension<Pallette>()!.normalText,
+                        fontSize: 21,
+                      ),
+                ),
+              ),
+            ));
   }
 }
