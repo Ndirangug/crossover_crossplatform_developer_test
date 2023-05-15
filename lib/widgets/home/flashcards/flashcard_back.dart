@@ -75,6 +75,7 @@ class FlashcardBack extends StatelessWidget {
               ),
             )),
             Container(
+              width: constraints.maxWidth,
               child: FlashcardAnswerConfidence(
                 id: id,
               ),
