@@ -41,8 +41,10 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData.light().copyWith(
         primaryColor: const Color.fromRGBO(1, 30, 41, 1),
         textTheme: Typography.englishLike2021.copyWith(
-            bodyMedium: theme.textTheme.bodyMedium!
-                .copyWith(color: Colors.black, fontFamily: 'SFProRounded')),
+            bodyMedium: theme.textTheme.bodyMedium!.copyWith(
+                color: Colors.black,
+                fontFamily: 'SFProRounded',
+                fontWeight: FontWeight.w400)),
         extensions: <ThemeExtension<dynamic>>[
           palette.Pallette(
             normalText: Colors.white,
@@ -63,8 +65,10 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData.dark().copyWith(
         primaryColor: const Color.fromRGBO(1, 30, 41, 1),
         textTheme: Typography.englishLike2021.copyWith(
-            bodyMedium: theme.textTheme.bodyMedium!
-                .copyWith(color: Colors.white, fontFamily: 'SFProRounded')),
+            bodyMedium: theme.textTheme.bodyMedium!.copyWith(
+                color: Colors.white,
+                fontFamily: 'SFProRounded',
+                fontWeight: FontWeight.w400)),
         extensions: <ThemeExtension<dynamic>>[
           palette.Pallette(
             normalText: Colors.white,

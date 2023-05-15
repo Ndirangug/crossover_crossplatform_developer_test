@@ -13,10 +13,12 @@ class FlashCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Obx(() =>
-          _followingController.flashcardsState[flashCard.id]!.isFlipped
-              ? const FlashcardFront()
-              : const FlashcardBack()),
+      child: Obx(
+          () => _followingController.flashcardsState[flashCard.id]!.isFlipped
+              ? const FlashcardBack()
+              : FlashcardFront(
+                  question: flashCard.flashbackFront,
+                )),
     );
   }
 }
