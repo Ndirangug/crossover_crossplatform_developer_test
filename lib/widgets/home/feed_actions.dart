@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FeedActions extends StatelessWidget {
-  final List<ActionItem> items;
+  final List<Widget> items;
   final double spacing;
   const FeedActions({super.key, required this.items, required this.spacing});
 

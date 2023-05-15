@@ -1,4 +1,6 @@
 import 'package:crossover_test/controllers/feed_actions_controller.dart';
+import 'package:crossover_test/controllers/following_controller.dart';
+import 'package:crossover_test/controllers/for_you_controller.dart';
 import 'package:crossover_test/models/flashcard.dart';
 import 'package:crossover_test/models/mcq.dart';
 import 'package:crossover_test/pallette.dart';
@@ -14,6 +16,9 @@ class Swippable extends StatelessWidget {
   final MCQ? mcq;
   Swippable({super.key, this.flashCard, this.mcq});
   final FeedActionsController _feedActionsController = Get.find();
+  final ForYouController _forYouController = Get.find();
+  final FollowingController _followingController = Get.find();
+  final _updateCount = 0.obs;
 
   bool get isFlashCard => flashCard != null;
 
@@ -98,51 +103,80 @@ class Swippable extends StatelessWidget {
                                             ? flashCard!.user.avatar
                                             : mcq!.user.avatar,
                                       )),
-                                  Obx(() => FeedActions(
-                                        spacing: 18,
-                                        items: [
-                                          ActionItem(
-                                              icon: "like",
-                                              label:
-                                                  "${_feedActionsController.likes}",
-                                              color: _feedActionsController
-                                                      .isLiked
-                                                  ? Theme.of(context)
-                                                      .extension<Pallette>()!
-                                                      .error
-                                                  : Theme.of(context)
-                                                      .extension<Pallette>()!
-                                                      .normalText,
-                                              onTap: _feedActionsController
-                                                  .toggleLike),
-                                          ActionItem(
-                                              icon: "comment",
-                                              label: "23",
-                                              onTap: () {}),
-                                          ActionItem(
-                                              icon: "share",
-                                              label: "23",
-                                              onTap: () {}),
-                                          ActionItem(
-                                              icon: "bookmarks",
-                                              label:
-                                                  "${_feedActionsController.bookmarks}",
-                                              color: _feedActionsController
-                                                      .isBookmarked
-                                                  ? Theme.of(context)
-                                                      .extension<Pallette>()!
-                                                      .tertiary3
-                                                  : Theme.of(context)
-                                                      .extension<Pallette>()!
-                                                      .normalText,
-                                              onTap: _feedActionsController
-                                                  .toggleBookmark),
-                                          ActionItem(
-                                              icon: "flip",
-                                              label: "Flip",
-                                              onTap: () {})
-                                        ],
-                                      ))
+                                  Obx(() {
+                                    var updateCount = _updateCount.value;
+                                    var state = isFlashCard
+                                        ? _followingController
+                                            .flashcardsState[flashCard!.id]
+                                        : _forYouController.mcqsState[mcq!.id];
+
+                                    return FeedActions(
+                                      spacing: 18,
+                                      items: [
+                                        ActionItem(
+                                            icon: "like",
+                                            label:
+                                                "${isFlashCard ? (state as FlashCardState).likesCount : (state as MCQState).likesCount}",
+                                            color: (isFlashCard
+                                                    ? (state as FlashCardState)
+                                                        .isLiked
+                                                    : (state as MCQState)
+                                                        .isLiked)
+                                                ? Theme.of(context)
+                                                    .extension<Pallette>()!
+                                                    .error
+                                                : Theme.of(context)
+                                                    .extension<Pallette>()!
+                                                    .normalText,
+                                            onTap: () {
+                                              isFlashCard
+                                                  ? _followingController
+                                                      .toggleLiked(
+                                                          flashCard!.id)
+                                                  : _forYouController
+                                                      .toggleLiked(mcq!.id);
+                                              _updateCount.value++;
+                                            }),
+                                        ActionItem(
+                                            icon: "comment",
+                                            label: "23",
+                                            onTap: () {}),
+                                        ActionItem(
+                                            icon: "share",
+                                            label: "23",
+                                            onTap: () {}),
+                                        ActionItem(
+                                            icon: "bookmarks",
+                                            label:
+                                                "${isFlashCard ? (state as FlashCardState).bookmarksCount : (state as MCQState).bookmarksCount}",
+                                            color: (isFlashCard
+                                                    ? (state as FlashCardState)
+                                                        .isBookmarked
+                                                    : (state as MCQState)
+                                                        .isBookmarked)
+                                                ? Theme.of(context)
+                                                    .extension<Pallette>()!
+                                                    .tertiary3
+                                                : Theme.of(context)
+                                                    .extension<Pallette>()!
+                                                    .normalText,
+                                            onTap: () {
+                                              isFlashCard
+                                                  ? _followingController
+                                                      .toggleBookmarked(
+                                                          flashCard!.id)
+                                                  : _forYouController
+                                                      .toggleBookmarked(
+                                                          mcq!.id);
+                                              _updateCount.value++;
+                                            }),
+                                        ActionItem(
+                                            icon: "flip",
+                                            label: "Flip",
+                                            onTap: () {})
+                                      ],
+                                    );
+                                  })
                                 ],
                               ))
                         ],
