@@ -6,6 +6,8 @@ import 'package:crossover_test/models/mcq.dart';
 import 'package:crossover_test/pallette.dart';
 import 'package:crossover_test/widgets/home/content_info.dart';
 import 'package:crossover_test/widgets/home/feed_actions.dart';
+import 'package:crossover_test/widgets/home/flashcards/flashcard_widget.dart';
+import 'package:crossover_test/widgets/home/mcq/mcq_widget.dart';
 import 'package:crossover_test/widgets/home/playlist_view.dart';
 import 'package:crossover_test/widgets/home/user_avatar.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,6 @@ class Swippable extends StatelessWidget {
   final FeedActionsController _feedActionsController = Get.find();
   final ForYouController _forYouController = Get.find();
   final FollowingController _followingController = Get.find();
-  final _updateCount = 0.obs;
 
   bool get isFlashCard => flashCard != null;
 
@@ -62,6 +63,10 @@ class Swippable extends StatelessWidget {
                                         color: Colors.black.withOpacity(0.3),
                                         height: 45,
                                         width: constraints.maxWidth,
+                                        child: isFlashCard
+                                            ? FlashCardWidget(
+                                                flashCard: flashCard!)
+                                            : MCQWidget(mcq: mcq!),
                                       ),
                                     ),
                                     Align(
@@ -104,7 +109,6 @@ class Swippable extends StatelessWidget {
                                             : mcq!.user.avatar,
                                       )),
                                   Obx(() {
-                                    var updateCount = _updateCount.value;
                                     var state = isFlashCard
                                         ? _followingController
                                             .flashcardsState[flashCard!.id]
@@ -135,7 +139,6 @@ class Swippable extends StatelessWidget {
                                                           flashCard!.id)
                                                   : _forYouController
                                                       .toggleLiked(mcq!.id);
-                                              _updateCount.value++;
                                             }),
                                         ActionItem(
                                             icon: "comment",
@@ -168,12 +171,18 @@ class Swippable extends StatelessWidget {
                                                   : _forYouController
                                                       .toggleBookmarked(
                                                           mcq!.id);
-                                              _updateCount.value++;
                                             }),
                                         ActionItem(
                                             icon: "flip",
                                             label: "Flip",
-                                            onTap: () {})
+                                            onTap: () {
+                                              isFlashCard
+                                                  ? _followingController
+                                                      .toggleFlipCard(
+                                                          flashCard!.id)
+                                                  : _forYouController
+                                                      .toggleFlipCard(mcq!.id);
+                                            })
                                       ],
                                     );
                                   })

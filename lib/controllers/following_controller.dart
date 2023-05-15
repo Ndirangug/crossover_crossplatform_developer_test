@@ -42,30 +42,50 @@ class FollowingController extends GetxController {
   }
 
   void setAnswerConfidence({required int id, required int confidence}) {
-    getFlashcardState(id).answerConfidence = confidence;
+    var currentState = getFlashcardState(id);
+
+    _flashCardStates[id.obs]!.value = currentState.copyWith(
+      answerConfidence: confidence,
+    );
   }
 
   void toggleFlipCard(int id) {
-    getFlashcardState(id).isFlipped = !_flashCardStates[id]!.value.isFlipped;
+    var currentState = getFlashcardState(id);
+
+    _flashCardStates[id.obs]!.value = currentState.copyWith(
+      isFlipped: !currentState.isFlipped,
+    );
   }
 
   void toggleLiked(int id) {
-    getFlashcardState(id).isLiked = !getFlashcardState(id).isLiked;
+    var currentState = getFlashcardState(id);
 
-    if (getFlashcardState(id).isLiked) {
-      getFlashcardState(id).likesCount++;
+    if (currentState.isLiked) {
+      _flashCardStates[id.obs]!.value = currentState.copyWith(
+        isLiked: !currentState.isLiked,
+        likesCount: currentState.likesCount + 1,
+      );
     } else {
-      getFlashcardState(id).likesCount--;
+      _flashCardStates[id.obs]!.value = currentState.copyWith(
+        isLiked: !currentState.isLiked,
+        likesCount: currentState.likesCount - 1,
+      );
     }
   }
 
   void toggleBookmarked(int id) {
-    getFlashcardState(id).isBookmarked = !getFlashcardState(id).isBookmarked;
+    var currentState = getFlashcardState(id);
 
-    if (getFlashcardState(id).isBookmarked) {
-      getFlashcardState(id).bookmarksCount++;
+    if (currentState.isBookmarked) {
+      _flashCardStates[id.obs]!.value = currentState.copyWith(
+        isBookmarked: !currentState.isBookmarked,
+        bookmarksCount: currentState.bookmarksCount + 1,
+      );
     } else {
-      getFlashcardState(id).bookmarksCount--;
+      _flashCardStates[id.obs]!.value = currentState.copyWith(
+        isBookmarked: !currentState.isBookmarked,
+        bookmarksCount: currentState.bookmarksCount - 1,
+      );
     }
   }
 
@@ -94,4 +114,20 @@ class FlashCardState {
     required this.likesCount,
     required this.bookmarksCount,
   });
+
+  FlashCardState copyWith(
+      {bool? isFlipped,
+      bool? isLiked,
+      bool? isBookmarked,
+      int? answerConfidence,
+      int? likesCount,
+      int? bookmarksCount}) {
+    return FlashCardState(
+        isFlipped: isFlipped ?? this.isFlipped,
+        isLiked: isLiked ?? this.isLiked,
+        isBookmarked: isBookmarked ?? this.isBookmarked,
+        answerConfidence: answerConfidence ?? this.answerConfidence,
+        likesCount: likesCount ?? this.likesCount,
+        bookmarksCount: bookmarksCount ?? this.bookmarksCount);
+  }
 }

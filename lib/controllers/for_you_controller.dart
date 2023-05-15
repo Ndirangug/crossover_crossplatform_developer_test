@@ -7,7 +7,7 @@ class ForYouController extends GetxController {
   late final PageController _pageController = PageController();
   late final Api _api;
   final _mcqs = <MCQ>[].obs;
-  final _mcqStates = RxMap<int, Rx<MCQState>>.of({});
+  final _mcqStates = <Rx<int>, Rx<MCQState>>{}.obs;
 
   ForYouController() {
     _pageController.addListener(() {
@@ -28,7 +28,7 @@ class ForYouController extends GetxController {
         _mcqs.add(newItem);
 
         //dummy state
-        _mcqStates[newItem.id] = (MCQState(
+        _mcqStates[newItem.id.obs] = (MCQState(
                 bookmarksCount: 234,
                 likesCount: 17,
                 isBookmarked: false,
@@ -41,38 +41,54 @@ class ForYouController extends GetxController {
     }
   }
 
-   void toggleFlipCard(int id) {
-    getMCQState(id).isFlipped = !_mcqStates[id]!.value.isFlipped;
+  void toggleFlipCard(int id) {
+    var currentState = getMcqState(id);
+
+    _mcqStates[id.obs]!.value = currentState.copyWith(
+      isFlipped: !currentState.isFlipped,
+    );
   }
 
   void toggleLiked(int id) {
-    getMCQState(id).isLiked = !getMCQState(id).isLiked;
+    var currentState = getMcqState(id);
 
-    if (getMCQState(id).isLiked) {
-      getMCQState(id).likesCount++;
+    if (currentState.isLiked) {
+      _mcqStates[id.obs]!.value = currentState.copyWith(
+        isLiked: !currentState.isLiked,
+        likesCount: currentState.likesCount + 1,
+      );
     } else {
-      getMCQState(id).likesCount--;
+      _mcqStates[id.obs]!.value = currentState.copyWith(
+        isLiked: !currentState.isLiked,
+        likesCount: currentState.likesCount - 1,
+      );
     }
   }
 
   void toggleBookmarked(int id) {
-    getMCQState(id).isBookmarked = !getMCQState(id).isBookmarked;
+    var currentState = getMcqState(id);
 
-    if (getMCQState(id).isBookmarked) {
-      getMCQState(id).bookmarksCount++;
+    if (currentState.isBookmarked) {
+      _mcqStates[id.obs]!.value = currentState.copyWith(
+        isBookmarked: !currentState.isBookmarked,
+        bookmarksCount: currentState.bookmarksCount + 1,
+      );
     } else {
-      getMCQState(id).bookmarksCount--;
+      _mcqStates[id.obs]!.value = currentState.copyWith(
+        isBookmarked: !currentState.isBookmarked,
+        bookmarksCount: currentState.bookmarksCount - 1,
+      );
     }
   }
 
-  MCQState getMCQState(int id) {
-    return _mcqStates[id]!.value;
+  MCQState getMcqState(int id) {
+    return _mcqStates[id.obs]!.value;
   }
 
   PageController get forYouPageController => _pageController;
   List<MCQ> get mcqs => _mcqs.map((e) => e).toList();
-   Map<int, MCQState> get mcqsState =>
-      _mcqStates.map((key, value) => MapEntry(key, value.value));
+  Map<int, MCQState> get mcqsState =>
+      _mcqStates.map((key, value) => MapEntry(key.value, value.value));
 }
 
 class MCQState {
@@ -90,4 +106,20 @@ class MCQState {
     required this.likesCount,
     required this.bookmarksCount,
   });
+
+  MCQState copyWith(
+      {bool? isFlipped,
+      bool? isLiked,
+      bool? isBookmarked,
+      int? answerConfidence,
+      int? likesCount,
+      int? bookmarksCount}) {
+    return MCQState(
+        isFlipped: isFlipped ?? this.isFlipped,
+        isLiked: isLiked ?? this.isLiked,
+        isBookmarked: isBookmarked ?? this.isBookmarked,
+        answerConfidence: answerConfidence ?? this.answerConfidence,
+        likesCount: likesCount ?? this.likesCount,
+        bookmarksCount: bookmarksCount ?? this.bookmarksCount);
+  }
 }
