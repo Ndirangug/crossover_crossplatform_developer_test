@@ -23,13 +23,16 @@ class ContentInfo extends StatelessWidget {
                     .copyWith(fontSize: 18),
               ),
             ),
-            Text(
-              description,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontSize: 15),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                description,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontSize: 15),
+              ),
             )
           ]),
     );

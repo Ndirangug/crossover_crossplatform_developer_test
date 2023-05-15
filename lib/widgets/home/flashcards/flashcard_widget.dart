@@ -13,31 +13,36 @@ class FlashCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-        builder: ((context, constraints) => Container(
+        builder: ((context, constraints) => SizedBox(
               width: constraints.maxWidth,
               height: constraints.maxHeight,
-              child: Obx(() => AnimatedCrossFade(
-                  firstChild: Container(
-                    height: constraints.maxHeight,
-                    width: constraints.maxWidth,
-                    child: FlashcardFront(
-                      question: flashCard.flashbackFront,
+              child: GestureDetector(
+                onTap: () {
+                  _followingController.toggleFlipCard(flashCard.id);
+                },
+                child: Obx(() => AnimatedCrossFade(
+                    firstChild: Container(
+                      height: constraints.maxHeight,
+                      width: constraints.maxWidth,
+                      child: FlashcardFront(
+                        question: flashCard.flashbackFront,
+                      ),
                     ),
-                  ),
-                  secondChild: Container(
-                    height: constraints.maxHeight,
-                    width: constraints.maxWidth,
-                    child: FlashcardBack(
-                      id: flashCard.id,
-                      question: flashCard.flashbackFront,
-                      answer: flashCard.flashbackBack,
+                    secondChild: Container(
+                      height: constraints.maxHeight,
+                      width: constraints.maxWidth,
+                      child: FlashcardBack(
+                        id: flashCard.id,
+                        question: flashCard.flashbackFront,
+                        answer: flashCard.flashbackBack,
+                      ),
                     ),
-                  ),
-                  crossFadeState: _followingController
-                          .flashcardsState[flashCard.id]!.isFlipped
-                      ? CrossFadeState.showSecond
-                      : CrossFadeState.showFirst,
-                  duration: const Duration(milliseconds: 500))),
+                    crossFadeState: _followingController
+                            .flashcardsState[flashCard.id]!.isFlipped
+                        ? CrossFadeState.showSecond
+                        : CrossFadeState.showFirst,
+                    duration: const Duration(milliseconds: 500))),
+              ),
             )));
   }
 }

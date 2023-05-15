@@ -23,6 +23,7 @@ class PlaylistView extends StatelessWidget {
               margin: const EdgeInsets.only(left: 5, right: 5),
               alignment: Alignment.center,
               child: Text(playlistName,
+                  textScaleFactor: 1,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color:
                           Theme.of(context).extension<Pallette>()!.normalText,
