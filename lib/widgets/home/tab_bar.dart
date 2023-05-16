@@ -1,4 +1,4 @@
-import 'package:crossover_test/controllers/feed_actions_controller.dart';
+import 'package:crossover_test/controllers/home_page_controller.dart';
 import 'package:crossover_test/pallette.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,7 +49,7 @@ class _HomeTabbarState extends State<HomeTabbar>
     //todo investigate crash on tabcontroller
     _tabController = TabController(vsync: this, length: 2);
 
-    Get.find<FeedActionsController>().tabController = _tabController;
+    Get.find<HomePageController>().tabController = _tabController;
   }
 
   @override

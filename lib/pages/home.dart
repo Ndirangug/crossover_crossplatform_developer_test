@@ -1,6 +1,6 @@
-import 'package:crossover_test/controllers/feed_actions_controller.dart';
 import 'package:crossover_test/controllers/following_controller.dart';
 import 'package:crossover_test/controllers/for_you_controller.dart';
+import 'package:crossover_test/controllers/home_page_controller.dart';
 import 'package:crossover_test/pallette.dart';
 import 'package:crossover_test/widgets/home/home_top_bar.dart';
 import 'package:crossover_test/widgets/home/swipable.dart';
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage>
                 height: constraints.maxHeight,
                 width: constraints.maxWidth,
                 child: TabBarView(
-                    controller: Get.find<FeedActionsController>().tabController,
+                    controller: Get.find<HomePageController>().tabController,
                     children: [
                       Obx(() => PageView(
                           restorationId: "1",

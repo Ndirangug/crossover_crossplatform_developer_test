@@ -1,7 +1,8 @@
 import 'package:crossover_test/api.dart';
-import 'package:crossover_test/controllers/feed_actions_controller.dart';
 import 'package:crossover_test/controllers/following_controller.dart';
 import 'package:crossover_test/controllers/for_you_controller.dart';
+import 'package:crossover_test/controllers/home_page_controller.dart';
+import 'package:crossover_test/controllers/screen_time_controller.dart';
 import 'package:crossover_test/pallette.dart' as palette;
 import 'package:crossover_test/router.dart';
 import 'package:crossover_test/widgets/bottom_navbar/bottom_navbar.dart';
@@ -22,15 +23,16 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() async {
         //Get.put(await SharedPreferences.getInstance(), permanent: true);
+        Get.put(ScreenTimeController(), permanent: true);
         Get.put(Api(), permanent: true);
-        Get.put(FeedActionsController(), permanent: true);
+        Get.put(HomePageController(), permanent: true);
         Get.put(FollowingController(), permanent: true);
         Get.put(ForYouController(), permanent: true);
         Get.put(Logger(), permanent: true);
@@ -92,9 +94,35 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    Get.find<ScreenTimeController>().timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        Get.find<ScreenTimeController>().resumeTimer();
+        break;
+
+      case AppLifecycleState.paused:
+        Get.find<ScreenTimeController>().pauseTimer();
+        break;
+      case AppLifecycleState.detached:
+        Get.find<ScreenTimeController>().pauseTimer();
+        break;
+      case AppLifecycleState.inactive:
+        Get.find<ScreenTimeController>().pauseTimer();
+    }
   }
 }
 

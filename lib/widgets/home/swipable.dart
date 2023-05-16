@@ -1,4 +1,3 @@
-import 'package:crossover_test/controllers/feed_actions_controller.dart';
 import 'package:crossover_test/controllers/following_controller.dart';
 import 'package:crossover_test/controllers/for_you_controller.dart';
 import 'package:crossover_test/models/flashcard.dart';
@@ -17,7 +16,7 @@ class Swippable extends StatelessWidget {
   final FlashCard? flashCard;
   final MCQ? mcq;
   Swippable({super.key, this.flashCard, this.mcq});
-  final FeedActionsController _feedActionsController = Get.find();
+
   final ForYouController _forYouController = Get.find();
   final FollowingController _followingController = Get.find();
 
@@ -60,10 +59,10 @@ class Swippable extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Container(
-                                       // color: Colors.black.withOpacity(0.3),
+                                        // color: Colors.black.withOpacity(0.3),
                                         height: 45,
                                         width: constraints.maxWidth,
-                                       
+
                                         child: LayoutBuilder(
                                             builder: (context, constraints) =>
                                                 Container(
@@ -182,14 +181,18 @@ class Swippable extends StatelessWidget {
                                         ActionItem(
                                             icon: "flip",
                                             label: "Flip",
-                                            onTap: _forYouController.answerLoading ? null:  () {
-                                              isFlashCard
-                                                  ? _followingController
-                                                      .toggleFlipCard(
-                                                          flashCard!.id)
-                                                  : _forYouController
-                                                      .toggleFlipCard(mcq!.id);
-                                            })
+                                            onTap: _forYouController
+                                                    .answerLoading
+                                                ? null
+                                                : () {
+                                                    isFlashCard
+                                                        ? _followingController
+                                                            .toggleFlipCard(
+                                                                flashCard!.id)
+                                                        : _forYouController
+                                                            .toggleFlipCard(
+                                                                mcq!.id);
+                                                  })
                                       ],
                                     );
                                   })

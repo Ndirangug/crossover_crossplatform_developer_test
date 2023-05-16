@@ -1,6 +1,11 @@
+import 'dart:async';
+
+import 'package:crossover_test/controllers/home_page_controller.dart';
+import 'package:crossover_test/controllers/screen_time_controller.dart';
 import 'package:crossover_test/pallette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class ScreenTime extends StatefulWidget {
   const ScreenTime({super.key});
@@ -9,7 +14,9 @@ class ScreenTime extends StatefulWidget {
   State<ScreenTime> createState() => _ScreenTimeState();
 }
 
-class _ScreenTimeState extends State<ScreenTime> {
+class _ScreenTimeState extends State<ScreenTime> with WidgetsBindingObserver {
+  final ScreenTimeController _screenTimeController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     var color =
@@ -30,15 +37,17 @@ class _ScreenTimeState extends State<ScreenTime> {
                       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
                     ),
                   ),
-                  Text(
-                    "10m",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: color, fontSize: 16),
-                  )
+                  Obx(() => Text(
+                        "${_screenTimeController.timeOnScreen}m",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: color, fontSize: 16),
+                      ))
                 ],
               ),
             ));
   }
+
+ 
 }
