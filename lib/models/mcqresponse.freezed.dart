@@ -20,7 +20,7 @@ McqResponse _$McqResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$McqResponse {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'correct_options')
   List<McqOption> get correctOptions => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $McqResponseCopyWith<$Res> {
       _$McqResponseCopyWithImpl<$Res, McqResponse>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       @JsonKey(name: 'correct_options') List<McqOption> correctOptions});
 }
 
@@ -61,7 +61,7 @@ class _$McqResponseCopyWithImpl<$Res, $Val extends McqResponse>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       correctOptions: null == correctOptions
           ? _value.correctOptions
           : correctOptions // ignore: cast_nullable_to_non_nullable
@@ -79,7 +79,7 @@ abstract class _$$_McqResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       @JsonKey(name: 'correct_options') List<McqOption> correctOptions});
 }
 
@@ -101,7 +101,7 @@ class __$$_McqResponseCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       correctOptions: null == correctOptions
           ? _value._correctOptions
           : correctOptions // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ class _$_McqResponse implements _McqResponse {
       _$$_McqResponseFromJson(json);
 
   @override
-  final String id;
+  final int id;
   final List<McqOption> _correctOptions;
   @override
   @JsonKey(name: 'correct_options')
@@ -169,7 +169,7 @@ class _$_McqResponse implements _McqResponse {
 
 abstract class _McqResponse implements McqResponse {
   factory _McqResponse(
-      {required final String id,
+      {required final int id,
       @JsonKey(name: 'correct_options')
           required final List<McqOption> correctOptions}) = _$_McqResponse;
 
@@ -177,7 +177,7 @@ abstract class _McqResponse implements McqResponse {
       _$_McqResponse.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   @JsonKey(name: 'correct_options')
   List<McqOption> get correctOptions;

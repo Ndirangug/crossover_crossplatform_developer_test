@@ -28,7 +28,7 @@ class FeedActions extends StatelessWidget {
 class ActionItem extends StatelessWidget {
   final String icon;
   final String label;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Color color;
   const ActionItem(
       {super.key,

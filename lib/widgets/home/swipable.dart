@@ -182,7 +182,7 @@ class Swippable extends StatelessWidget {
                                         ActionItem(
                                             icon: "flip",
                                             label: "Flip",
-                                            onTap: () {
+                                            onTap: _forYouController.answerLoading ? null:  () {
                                               isFlashCard
                                                   ? _followingController
                                                       .toggleFlipCard(

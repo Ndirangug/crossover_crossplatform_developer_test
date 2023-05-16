@@ -7,7 +7,7 @@ part 'mcqresponse.g.dart';
 @freezed
 class McqResponse with _$McqResponse {
   factory McqResponse(
-      {required String id,
+      {required int id,
       @JsonKey(name: 'correct_options')
           required List<McqOption> correctOptions}) = _McqResponse;
 

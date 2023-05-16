@@ -1,13 +1,17 @@
 import 'package:crossover_test/api.dart';
 import 'package:crossover_test/models/mcq.dart';
+import 'package:crossover_test/models/mcqoption.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+enum AnswerState { correct, wrong, unmarked }
 
 class ForYouController extends GetxController {
   late final PageController _pageController = PageController();
   late final Api _api;
   final _mcqs = <MCQ>[].obs;
   final _mcqStates = <Rx<int>, Rx<MCQState>>{}.obs;
+  final _answerLoading = false.obs;
 
   ForYouController() {
     _pageController.addListener(() {
@@ -41,12 +45,56 @@ class ForYouController extends GetxController {
     }
   }
 
-  void toggleFlipCard(int id) {
+  Future<List<McqOption>?> fetchAnswer(int questionId) async {
+    try {
+      answerLoading = true;
+      final answer = await _api.fetchMcqAnswer(questionId);
+      return answer.correctOptions;
+    } catch (error) {
+      print(error);
+      return null;
+      //probably snackbar
+    } finally {
+      answerLoading = false;
+    }
+  }
+
+  AnswerState getAnswerState(
+      {required int questionId, required String givenAnswerId}) {
+    var currentState = getMcqState(questionId);
+    if (currentState.correctAnswers == null) {
+      return AnswerState.unmarked;
+    }
+
+    bool givenCorrectAnswer = currentState.correctAnswers!
+        .any((option) => option.id == givenAnswerId);
+
+    if (givenCorrectAnswer) {
+      return AnswerState.correct;
+    } else if (givenAnswerId == currentState.givenAnswer &&
+        !givenCorrectAnswer) {
+      return AnswerState.wrong;
+    } else {
+      return AnswerState.unmarked;
+    }
+  }
+
+  Future<void> toggleFlipCard(int id) async {
     var currentState = getMcqState(id);
+    List<McqOption>? answers = null;
+
+    if (currentState.correctAnswers == null) {
+      answers = await fetchAnswer(id);
+    }
 
     _mcqStates[id.obs]!.value = currentState.copyWith(
-      isFlipped: !currentState.isFlipped,
-    );
+        isFlipped: !currentState.isFlipped, correctAnswers: answers);
+  }
+
+  void supplyAnswer({required int questionId, required String answerId}) {
+    var currentState = getMcqState(questionId);
+    _mcqStates[questionId.obs]!.value =
+        currentState.copyWith(givenAnswer: answerId);
   }
 
   void toggleLiked(int id) {
@@ -89,20 +137,24 @@ class ForYouController extends GetxController {
   List<MCQ> get mcqs => _mcqs.map((e) => e).toList();
   Map<int, MCQState> get mcqsState =>
       _mcqStates.map((key, value) => MapEntry(key.value, value.value));
+  bool get answerLoading => _answerLoading.value;
+  set answerLoading(bool value) => _answerLoading.value = value;
 }
 
 class MCQState {
   bool isFlipped;
   bool isLiked;
   bool isBookmarked;
-  int? answerConfidence;
+  String? givenAnswer;
+  List<McqOption>? correctAnswers;
   int likesCount;
   int bookmarksCount;
   MCQState({
     required this.isFlipped,
     required this.isLiked,
     required this.isBookmarked,
-    this.answerConfidence,
+    this.givenAnswer,
+    this.correctAnswers,
     required this.likesCount,
     required this.bookmarksCount,
   });
@@ -111,14 +163,16 @@ class MCQState {
       {bool? isFlipped,
       bool? isLiked,
       bool? isBookmarked,
-      int? answerConfidence,
+      String? givenAnswer,
+      List<McqOption>? correctAnswers,
       int? likesCount,
       int? bookmarksCount}) {
     return MCQState(
         isFlipped: isFlipped ?? this.isFlipped,
         isLiked: isLiked ?? this.isLiked,
         isBookmarked: isBookmarked ?? this.isBookmarked,
-        answerConfidence: answerConfidence ?? this.answerConfidence,
+        givenAnswer: givenAnswer ?? this.givenAnswer,
+        correctAnswers: correctAnswers ?? this.correctAnswers,
         likesCount: likesCount ?? this.likesCount,
         bookmarksCount: bookmarksCount ?? this.bookmarksCount);
   }
