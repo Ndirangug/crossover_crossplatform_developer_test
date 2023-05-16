@@ -1,4 +1,5 @@
 import 'package:crossover_test/api.dart';
+import 'package:crossover_test/controllers/feed_controller.dart';
 import 'package:crossover_test/models/mcq.dart';
 import 'package:crossover_test/models/mcqoption.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:get/get.dart';
 
 enum AnswerState { correct, wrong, unmarked }
 
-class ForYouController extends GetxController {
+class ForYouController extends GetxController implements FeedController {
   late final PageController _pageController = PageController();
   late final Api _api;
   final _mcqs = <MCQ>[].obs;
@@ -17,15 +18,16 @@ class ForYouController extends GetxController {
     _pageController.addListener(() {
       //if there are less than 3 invisible items left, fetch more
       if (_mcqs.length.toDouble() - (_pageController.page ?? 0) <= 3) {
-        _fetchMore(1);
+        fetchMore(1);
       }
     });
     _api = Get.find();
 
-    _fetchMore(2);
+    fetchMore(2);
   }
 
-  Future<void> _fetchMore(int count) async {
+  @override
+  Future<void> fetchMore(int count) async {
     try {
       for (var i = 0; i < count; i++) {
         final newItem = await _api.fetchNextForYou();
@@ -79,6 +81,7 @@ class ForYouController extends GetxController {
     }
   }
 
+  @override
   Future<void> toggleFlipCard(int id) async {
     var currentState = getMcqState(id);
     List<McqOption>? answers = null;
@@ -97,6 +100,7 @@ class ForYouController extends GetxController {
         currentState.copyWith(givenAnswer: answerId);
   }
 
+  @override
   void toggleLiked(int id) {
     var currentState = getMcqState(id);
 
@@ -113,6 +117,7 @@ class ForYouController extends GetxController {
     }
   }
 
+  @override
   void toggleBookmarked(int id) {
     var currentState = getMcqState(id);
 
