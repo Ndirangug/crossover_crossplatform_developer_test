@@ -20,6 +20,8 @@ class _HomePageState extends State<HomePage>
   final FollowingController _followingController = Get.find();
   final ForYouController _forYouController = Get.find();
   final Logger _logger = Get.find();
+  late PageController _forYouPageController;
+  late PageController _followingPageController;
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +63,7 @@ class _HomePageState extends State<HomePage>
                       Obx(() => PageView(
                           restorationId: "1",
                           scrollDirection: Axis.vertical,
-                          controller:
-                              _followingController.followingPageController,
+                          controller: _followingPageController,
                           children:
                               _followingController.flashCards.map((flashCard) {
                             // _logger.i(flashCard);
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage>
                       Obx(() => PageView(
                           restorationId: "2",
                           scrollDirection: Axis.vertical,
-                          controller: _forYouController.forYouPageController,
+                          controller: _forYouPageController,
                           children: _forYouController.mcqs.map((mcq) {
                             //_logger.i(mcq);
                             return Swippable(mcq: mcq);
@@ -83,6 +84,28 @@ class _HomePageState extends State<HomePage>
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _followingPageController = PageController()
+      ..addListener(() {
+        if (_followingController.flashCards.length.toDouble() -
+                (_followingPageController.page ?? 0) <=
+            3) {
+          _followingController.fetchMore(1);
+        }
+      });
+
+    _forYouPageController = PageController()
+      ..addListener(() {
+        if (_forYouController.mcqs.length.toDouble() -
+                (_forYouPageController.page ?? 0) <=
+            3) {
+          _forYouController.fetchMore(1);
+        }
+      });
   }
 
   @override

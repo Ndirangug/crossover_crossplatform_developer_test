@@ -5,21 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FollowingController extends GetxController implements FeedController {
-  late final PageController _pageController = PageController();
+  //late final PageController _pageController = PageController();
   late final Api _api;
   final _flashCards = <FlashCard>[].obs;
   final _flashCardStates = <Rx<int>, Rx<FlashCardState>>{}.obs;
 
   FollowingController() {
-    _pageController.addListener(() {
-      //if there are less than 3 invisible items left, fetch more
-      if (_flashCards.length.toDouble() - (_pageController.page ?? 0) <= 3) {
-        fetchMore(1);
-      }
-    });
+    //_pageController.addListener(pageViewControllerListener);
     _api = Get.find();
     fetchMore(2);
   }
+
+  // void pageViewControllerListener() {
+  //   if (_flashCards.length.toDouble() - (_pageController.page ?? 0) <= 3) {
+  //     fetchMore(1);
+  //   }
+  // }
 
   @override
   Future<void> fetchMore(int count) async {
@@ -98,7 +99,7 @@ class FollowingController extends GetxController implements FeedController {
     return _flashCardStates[id.obs]!.value;
   }
 
-  PageController get followingPageController => _pageController;
+  //PageController get followingPageController => _pageController;
   List<FlashCard> get flashCards => _flashCards.map((e) => e).toList();
   Map<int, FlashCardState> get flashcardsState =>
       _flashCardStates.map((key, value) => MapEntry(key.value, value.value));

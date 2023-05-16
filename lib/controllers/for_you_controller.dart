@@ -2,29 +2,24 @@ import 'package:crossover_test/api.dart';
 import 'package:crossover_test/controllers/feed_controller.dart';
 import 'package:crossover_test/models/mcq.dart';
 import 'package:crossover_test/models/mcqoption.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 enum AnswerState { correct, wrong, unmarked }
 
 class ForYouController extends GetxController implements FeedController {
-  late final PageController _pageController = PageController();
+  //late final PageController _pageController = PageController();
   late final Api _api;
   final _mcqs = <MCQ>[].obs;
   final _mcqStates = <Rx<int>, Rx<MCQState>>{}.obs;
   final _answerLoading = false.obs;
 
   ForYouController() {
-    _pageController.addListener(() {
-      //if there are less than 3 invisible items left, fetch more
-      if (_mcqs.length.toDouble() - (_pageController.page ?? 0) <= 3) {
-        fetchMore(1);
-      }
-    });
+    //_pageController.addListener(pageViewControllerListener);
     _api = Get.find();
 
     fetchMore(2);
   }
+
 
   @override
   Future<void> fetchMore(int count) async {
@@ -138,7 +133,7 @@ class ForYouController extends GetxController implements FeedController {
     return _mcqStates[id.obs]!.value;
   }
 
-  PageController get forYouPageController => _pageController;
+  // PageController get forYouPageController => _pageController;
   List<MCQ> get mcqs => _mcqs.map((e) => e).toList();
   Map<int, MCQState> get mcqsState =>
       _mcqStates.map((key, value) => MapEntry(key.value, value.value));
