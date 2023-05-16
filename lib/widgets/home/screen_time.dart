@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:crossover_test/controllers/home_page_controller.dart';
 import 'package:crossover_test/controllers/screen_time_controller.dart';
 import 'package:crossover_test/pallette.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +16,10 @@ class _ScreenTimeState extends State<ScreenTime> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    var color =
-        Theme.of(context).extension<Pallette>()!.normalText.withOpacity(0.6);
+    var color = Theme.of(context)
+        .extension<Pallette>()!
+        .normalText
+        .withOpacity(Theme.of(context).brightness == Brightness.dark ? 0.6 : 1);
 
     return LayoutBuilder(
         builder: (context, constraints) => Container(
@@ -48,6 +47,4 @@ class _ScreenTimeState extends State<ScreenTime> with WidgetsBindingObserver {
               ),
             ));
   }
-
- 
 }

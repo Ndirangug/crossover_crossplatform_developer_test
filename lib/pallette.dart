@@ -14,6 +14,8 @@ class Pallette extends ThemeExtension<Pallette> {
   final Color tertiary4;
   final Color tertiary5;
 
+
+
   Pallette({
     required this.normalText,
     required this.disabledText,

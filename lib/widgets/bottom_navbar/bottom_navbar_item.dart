@@ -23,10 +23,11 @@ BottomNavigationBarItem buildBottomNavbarItem(
       ),
       activeIcon: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
-        child: SvgPicture.asset(
-          "assets/icons/$icon.svg",
-          width: 22,
-        ),
+        child: SvgPicture.asset("assets/icons/$icon.svg",
+            width: 22,
+            colorFilter: ColorFilter.mode(
+                Theme.of(context).extension<Pallette>()!.normalText,
+                BlendMode.srcIn)),
       ),
       label: label);
 }

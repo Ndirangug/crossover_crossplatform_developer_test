@@ -18,6 +18,9 @@ class _HomeTabbarState extends State<HomeTabbar>
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (context, constraints) => TabBar(
+                labelColor: Theme.of(context).extension<Pallette>()!.normalText,
+                unselectedLabelColor:
+                    Theme.of(context).extension<Pallette>()!.normalText,
                 labelStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
@@ -47,6 +50,7 @@ class _HomeTabbarState extends State<HomeTabbar>
   void initState() {
     super.initState();
     //todo investigate crash on tabcontroller
+
     _tabController = TabController(vsync: this, length: 2);
 
     Get.find<HomePageController>().tabController = _tabController;

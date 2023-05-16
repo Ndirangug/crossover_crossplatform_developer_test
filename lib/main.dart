@@ -39,9 +39,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       }),
       initialRoute: "/",
       getPages: [GetPage(name: "/", page: () => const _Scaffold())],
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       theme: ThemeData.light().copyWith(
-        primaryColor: const Color.fromRGBO(1, 30, 41, 1),
+        primaryColor: const Color.fromRGBO(213, 234, 242, 1),
         textTheme: Typography.englishLike2021.copyWith(
             bodyMedium: theme.textTheme.bodyMedium!.copyWith(
                 color: Colors.black,
@@ -49,13 +49,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 fontWeight: FontWeight.w400)),
         extensions: <ThemeExtension<dynamic>>[
           palette.Pallette(
-            normalText: Colors.white,
-            disabledText: Colors.white.withOpacity(0.4),
-            primary: const Color.fromRGBO(1, 30, 41, 1),
-            primaryGradientColor1: const Color.fromRGBO(0, 29, 40, 1),
-            primaryGradientColor2: const Color.fromRGBO(0, 66, 90, 1),
-            accent: const Color.fromRGBO(40, 177, 143, 1),
-            error: const Color.fromRGBO(220, 95, 95, 1),
+            normalText: Colors.black,
+            disabledText: Colors.black.withOpacity(0.4),
+            primary: const Color.fromRGBO(213, 234, 242, 1),
+            primaryGradientColor1: const Color.fromRGBO(213, 234, 242, 1),
+            primaryGradientColor2: const Color.fromRGBO(239, 247, 250, 1),
+            accent: const Color.fromRGBO(31, 138, 112, 1),
+            error: const Color.fromRGBO(216, 78, 78, 1),
             tertiary1: const Color.fromRGBO(241, 125, 35, 1),
             tertiary2: const Color.fromRGBO(251, 182, 104, 1),
             tertiary3: const Color.fromRGBO(255, 212, 73, 1),

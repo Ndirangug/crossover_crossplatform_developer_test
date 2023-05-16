@@ -9,16 +9,18 @@ class PlaylistView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white.withOpacity(0.1),
+      color:
+          Theme.of(context).extension<Pallette>()!.normalText.withOpacity(0.1),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            "assets/icons/playlist.svg",
-            width: 20,
-          ),
+          SvgPicture.asset("assets/icons/playlist.svg",
+              width: 20,
+              colorFilter: ColorFilter.mode(
+                  Theme.of(context).extension<Pallette>()!.normalText,
+                  BlendMode.srcIn)),
           Container(
               margin: const EdgeInsets.only(left: 5, right: 5),
               alignment: Alignment.center,
@@ -34,6 +36,9 @@ class PlaylistView extends StatelessWidget {
             "assets/icons/chevron_right.svg",
             width: 11,
             height: 16,
+            colorFilter: ColorFilter.mode(
+                Theme.of(context).extension<Pallette>()!.normalText,
+                BlendMode.srcIn),
           ),
         ],
       ),
