@@ -46,15 +46,21 @@ dev_dependencies:
   freezed: ^2.3.2
   json_serializable: ^6.5.4
   flutter_sprite: ^3.0.4
-  flutter_launcher_icons: ^0.12.0
+  flutter_launcher_icons: ^0.13.0
 
-# flutter_launcer_icons configuration (https://pub.dev/packages/flutter_launcher_icons)
-flutter_icons:
+flutter_launcher_icons:
+  image_path_android: "assets/icons/icon.png"
+  image_path_ios: "assets/icons/icon.png"
   android: true
-  image_path: "assets/images/Common/NOUNS_Icon.png"
-  ios:
-    generate: true
-    remove_ios_alpha: true
+  ios: true
+  remove_alpha_ios: true
+# flutter_launcer_icons configuration (https://pub.dev/packages/flutter_launcher_icons)
+# flutter_icons:
+#   android: true
+#   image_path: "assets/images/Common/NOUNS_Icon.png"
+#   ios:
+#     generate: true
+#     remove_ios_alpha: true
 
 flutter:
   uses-material-design: true

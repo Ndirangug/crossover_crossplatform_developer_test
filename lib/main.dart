@@ -28,13 +28,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return GetMaterialApp(
-      initialBinding: BindingsBuilder(() async {
-        Get.put(ScreenTimeController(), permanent: true);
+      initialBinding: BindingsBuilder(() {
+        Get.put(Logger(), permanent: true);
         Get.put(Api(), permanent: true);
-        Get.put(HomePageController(), permanent: true);
         Get.put(FollowingController(), permanent: true);
         Get.put(ForYouController(), permanent: true);
-        Get.put(Logger(), permanent: true);
+        Get.put(ScreenTimeController(), permanent: true);
+        Get.put(HomePageController(), permanent: true);
       }),
       initialRoute: "/",
       getPages: [GetPage(name: "/", page: () => const _Scaffold())],

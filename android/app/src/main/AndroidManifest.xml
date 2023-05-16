@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.crossover_test">
    <application
-        android:label="crossover_test"
+        android:label="Tiktok Clone"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
