@@ -1,3 +1,5 @@
+import 'package:detectable_text_field/detectable_text_field.dart';
+import 'package:detectable_text_field/detector/sample_regular_expressions.dart';
 import 'package:flutter/material.dart';
 
 class ContentInfo extends StatelessWidget {
@@ -7,34 +9,50 @@ class ContentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.black.withOpacity(0.2),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 5),
-              child: Text(
-                user,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(fontSize: 18),
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Text(
-                description,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(fontSize: 15),
-              ),
-            )
-          ]),
-    );
+    return LayoutBuilder(
+        builder: ((context, constraints) => Container(
+              width: constraints.maxWidth,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 5),
+                      child: Text(
+                        user,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontSize: 18),
+                      ),
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        width: constraints.maxWidth,
+                        child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: SizedBox(
+                              width: constraints.maxWidth,
+                              child: DetectableText(
+                                text: description,
+                                overflow: TextOverflow.visible,
+                                detectionRegExp: hashTagRegExp,
+                                detectedStyle: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w700),
+                                basicStyle: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(fontSize: 15),
+                                onTap: (p) {},
+                              ),
+                            )),
+                      ),
+                    )
+                  ]),
+            )));
   }
 }
