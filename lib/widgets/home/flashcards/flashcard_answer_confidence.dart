@@ -3,7 +3,6 @@ import 'package:crossover_test/pallette.dart';
 import 'package:crossover_test/widgets/home/flashcards/answer_confidence_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 class FlashcardAnswerConfidence extends StatefulWidget {
   final int id;
