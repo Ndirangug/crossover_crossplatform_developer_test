@@ -10,7 +10,7 @@ class MCQWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-        builder: (context, constraints) => Container(
+        builder: (context, constraints) => SizedBox(
               height: constraints.maxHeight,
               width: constraints.maxWidth,
               child: Column(
@@ -36,21 +36,19 @@ class MCQWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: mcq.options
-                            .map((option) => AnswerTile(
-                                  option: option,
-                                  questionId: mcq.id,
-                                  width: constraints.maxWidth,
-                                  height: 52,
-                                  margin: const EdgeInsets.only(bottom: 10),
-                                ))
-                            .toList()),
-                  )
+                  Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: mcq.options
+                          .map((option) => AnswerTile(
+                                option: option,
+                                questionId: mcq.id,
+                                width: constraints.maxWidth,
+                                height: 52,
+                                margin: const EdgeInsets.only(bottom: 10),
+                              ))
+                          .toList())
                 ],
               ),
             ));

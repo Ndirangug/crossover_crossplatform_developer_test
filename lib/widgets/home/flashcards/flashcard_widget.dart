@@ -21,14 +21,14 @@ class FlashCardWidget extends StatelessWidget {
                   _followingController.toggleFlipCard(flashCard.id);
                 },
                 child: Obx(() => AnimatedCrossFade(
-                    firstChild: Container(
+                    firstChild: SizedBox(
                       height: constraints.maxHeight,
                       width: constraints.maxWidth,
                       child: FlashcardFront(
                         question: flashCard.flashbackFront,
                       ),
                     ),
-                    secondChild: Container(
+                    secondChild: SizedBox(
                       height: constraints.maxHeight,
                       width: constraints.maxWidth,
                       child: FlashcardBack(

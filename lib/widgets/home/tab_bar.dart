@@ -49,10 +49,7 @@ class _HomeTabbarState extends State<HomeTabbar>
   @override
   void initState() {
     super.initState();
-    //todo investigate crash on tabcontroller
-
     _tabController = TabController(vsync: this, length: 2);
-
     Get.find<HomePageController>().tabController = _tabController;
   }
 

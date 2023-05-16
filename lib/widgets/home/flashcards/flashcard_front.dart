@@ -8,7 +8,7 @@ class FlashcardFront extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-        builder: (context, constraints) => Container(
+        builder: (context, constraints) => SizedBox(
               width: constraints.maxWidth,
               height: constraints.maxHeight,
               child: Center(

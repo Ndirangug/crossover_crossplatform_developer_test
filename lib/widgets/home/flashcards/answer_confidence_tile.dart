@@ -14,7 +14,6 @@ class AnswerConfidenceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("Tapped $id");
         _followingController.setAnswerConfidence(id: id, confidence: score);
       },
       child: LayoutBuilder(

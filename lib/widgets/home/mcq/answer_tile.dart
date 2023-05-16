@@ -20,7 +20,6 @@ class AnswerTile extends StatelessWidget {
       this.width,
       this.height});
 
-  //var _hasTrailingIcon = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +60,7 @@ class AnswerTile extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: Obx(() => Container(
-                    //color: Colors.black.withOpacity(0.2),
+              child: Obx(() => SizedBox(
                     width: 28,
                     height: 27,
                     child: _forYouController.answerLoading
@@ -92,7 +90,6 @@ class AnswerTile extends StatelessWidget {
       {required BuildContext context,
       required AnswerState answerState,
       required bool isFlipped}) {
-    // Widget trailing = Container();
     if (!isFlipped) return Container();
 
     switch (answerState) {

@@ -14,7 +14,6 @@ class FlashcardBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Text('back');
     return LayoutBuilder(builder: ((context, constraints) {
       return SizedBox(
         height: constraints.maxHeight,
@@ -59,7 +58,6 @@ class FlashcardBack extends StatelessWidget {
             Expanded(
                 child: Container(
               margin: const EdgeInsets.only(bottom: 10),
-              //color: Colors.black.withOpacity(0.2),
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Text(
@@ -74,7 +72,7 @@ class FlashcardBack extends StatelessWidget {
                 ),
               ),
             )),
-            Container(
+            SizedBox(
               width: constraints.maxWidth,
               child: FlashcardAnswerConfidence(
                 id: id,

@@ -10,7 +10,7 @@ class ContentInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-        builder: ((context, constraints) => Container(
+        builder: ((context, constraints) => SizedBox(
               width: constraints.maxWidth,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -6,7 +6,6 @@ import 'package:crossover_test/widgets/home/home_top_bar.dart';
 import 'package:crossover_test/widgets/home/swipable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +18,6 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   final FollowingController _followingController = Get.find();
   final ForYouController _forYouController = Get.find();
-  final Logger _logger = Get.find();
   late PageController _forYouPageController;
   late PageController _followingPageController;
 
@@ -54,7 +52,7 @@ class _HomePageState extends State<HomePage>
             ),
             Expanded(
                 child: LayoutBuilder(
-              builder: (context, constraints) => Container(
+              builder: (context, constraints) => SizedBox(
                 height: constraints.maxHeight,
                 width: constraints.maxWidth,
                 child: TabBarView(
@@ -66,7 +64,6 @@ class _HomePageState extends State<HomePage>
                           controller: _followingPageController,
                           children:
                               _followingController.flashCards.map((flashCard) {
-                            // _logger.i(flashCard);
                             return Swippable(flashCard: flashCard);
                           }).toList())),
                       Obx(() => PageView(
@@ -74,7 +71,6 @@ class _HomePageState extends State<HomePage>
                           scrollDirection: Axis.vertical,
                           controller: _forYouPageController,
                           children: _forYouController.mcqs.map((mcq) {
-                            //_logger.i(mcq);
                             return Swippable(mcq: mcq);
                           }).toList()))
                     ]),

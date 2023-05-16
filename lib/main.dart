@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     var theme = Theme.of(context);
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() async {
-        //Get.put(await SharedPreferences.getInstance(), permanent: true);
         Get.put(ScreenTimeController(), permanent: true);
         Get.put(Api(), permanent: true);
         Get.put(HomePageController(), permanent: true);

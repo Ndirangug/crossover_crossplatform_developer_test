@@ -25,7 +25,7 @@ class Swippable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-        builder: (context, constraints) => Container(
+        builder: (context, constraints) => SizedBox(
               height: constraints.maxHeight,
               width: constraints.maxWidth,
               child: Column(
@@ -38,9 +38,7 @@ class Swippable extends StatelessWidget {
                           horizontal: constraints.maxWidth * 0.04,
                           vertical: constraints.maxWidth * 0.04),
                       width: constraints.maxWidth,
-                      child: Container(
-                          // color: Colors.white.withOpacity(0.3),
-                          child: Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -51,21 +49,18 @@ class Swippable extends StatelessWidget {
                                 width: constraints.maxWidth,
                                 margin: EdgeInsets.only(
                                     right: constraints.maxWidth * 0.02),
-                                //color: Colors.white.withOpacity(0.7),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Expanded(
-                                      child: Container(
-                                        // color: Colors.black.withOpacity(0.3),
+                                      child: SizedBox(
                                         height: 45,
                                         width: constraints.maxWidth,
-
                                         child: LayoutBuilder(
                                             builder: (context, constraints) =>
-                                                Container(
+                                                SizedBox(
                                                   height: constraints.maxHeight,
                                                   width: constraints.maxWidth,
                                                   child: isFlashCard
@@ -100,7 +95,6 @@ class Swippable extends StatelessWidget {
                           Container(
                               width: constraints.maxWidth * 0.13,
                               height: constraints.maxHeight,
-                              // color: Colors.white.withOpacity(0.5),
                               alignment: Alignment.bottomCenter,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -147,7 +141,6 @@ class Swippable extends StatelessWidget {
                                                       .toggleLiked(mcq!.id);
                                             }),
                                         ActionItem(
-                                        
                                             icon: "comment",
                                             label: "23",
                                             onTap: () {}),
@@ -200,7 +193,7 @@ class Swippable extends StatelessWidget {
                                 ],
                               ))
                         ],
-                      )),
+                      ),
                     ),
                   ),
                   Align(

@@ -3,23 +3,21 @@ import 'package:crossover_test/controllers/feed_controller.dart';
 import 'package:crossover_test/models/mcq.dart';
 import 'package:crossover_test/models/mcqoption.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 enum AnswerState { correct, wrong, unmarked }
 
 class ForYouController extends GetxController implements FeedController {
-  //late final PageController _pageController = PageController();
   late final Api _api;
   final _mcqs = <MCQ>[].obs;
   final _mcqStates = <Rx<int>, Rx<MCQState>>{}.obs;
   final _answerLoading = false.obs;
+  final Logger _logger = Get.find();
 
   ForYouController() {
-    //_pageController.addListener(pageViewControllerListener);
     _api = Get.find();
-
     fetchMore(2);
   }
-
 
   @override
   Future<void> fetchMore(int count) async {
@@ -28,7 +26,6 @@ class ForYouController extends GetxController implements FeedController {
         final newItem = await _api.fetchNextForYou();
         _mcqs.add(newItem);
 
-        //dummy state
         _mcqStates[newItem.id.obs] = (MCQState(
                 bookmarksCount: 234,
                 likesCount: 17,
@@ -38,7 +35,7 @@ class ForYouController extends GetxController implements FeedController {
             .obs;
       }
     } catch (error) {
-      //probably snackbar
+      _logger.e(error);
     }
   }
 
@@ -48,9 +45,8 @@ class ForYouController extends GetxController implements FeedController {
       final answer = await _api.fetchMcqAnswer(questionId);
       return answer.correctOptions;
     } catch (error) {
-      print(error);
+      _logger.e(error);
       return null;
-      //probably snackbar
     } finally {
       answerLoading = false;
     }
@@ -79,7 +75,7 @@ class ForYouController extends GetxController implements FeedController {
   @override
   Future<void> toggleFlipCard(int id) async {
     var currentState = getMcqState(id);
-    List<McqOption>? answers = null;
+    List<McqOption>? answers;
 
     if (currentState.correctAnswers == null) {
       answers = await fetchAnswer(id);
@@ -133,7 +129,6 @@ class ForYouController extends GetxController implements FeedController {
     return _mcqStates[id.obs]!.value;
   }
 
-  // PageController get forYouPageController => _pageController;
   List<MCQ> get mcqs => _mcqs.map((e) => e).toList();
   Map<int, MCQState> get mcqsState =>
       _mcqStates.map((key, value) => MapEntry(key.value, value.value));

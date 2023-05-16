@@ -42,12 +42,10 @@ class _FlashcardAnswerConfidenceState extends State<FlashcardAnswerConfidence> {
                                 .getFlashcardState(widget.id)
                                 .answerConfidence;
 
-                            Get.find<Logger>().d("score $score", _options);
                             return Container(
                                 margin: const EdgeInsets.only(top: 5),
                                 height: 52,
                                 width: constraints.maxWidth,
-                                //  color: Colors.black.withOpacity(0.5),
                                 child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment:

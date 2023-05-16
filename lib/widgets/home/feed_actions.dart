@@ -9,19 +9,16 @@ class FeedActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.red,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: items
-            .map((item) => Container(
-                  margin: EdgeInsets.only(top: spacing),
-                  child: item,
-                ))
-            .toList(),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: items
+          .map((item) => Container(
+                margin: EdgeInsets.only(top: spacing),
+                child: item,
+              ))
+          .toList(),
     );
   }
 }
@@ -48,7 +45,7 @@ class ActionItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: 5),
+            margin: const EdgeInsets.only(bottom: 5),
             child: SvgPicture.asset(
               "assets/icons/$icon.svg",
               width: 30,
